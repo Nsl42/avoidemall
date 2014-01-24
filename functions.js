@@ -14,7 +14,13 @@ function writeLvl (context, lvl)
 {
    context.font = '18pt Calibri';
    context.fillStyle = 'black';
-   context.fillText('lvl : ' + lvl, CAN_WIDTH - 80, 25);
+   context.fillText('lvl : ' + lvl, CAN_WIDTH - 100, 25);
+}
+function writeScore (context, player)
+{
+   context.font = '18pt Calibri';
+   context.fillStyle = 'black';
+   context.fillText('Score : ' + player.score, 10, CAN_HEIGHT - 25);
 }
 
 function getMousePos (canvas, evt)
@@ -78,7 +84,7 @@ function circRectOverlap (circ, rect)
    // limits value to the range min..max
    function clamp(val, min, max)
    {
-      return Math.max(min, Math.min(max, val))
+      return Math.max(min, Math.min(max, val));
    }
 
    // Find the closest point to the circle within the rectangle

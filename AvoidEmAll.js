@@ -6,11 +6,12 @@ var obs =
    list : [],
    add : function ()
    {
-      var type = (Math.random() > 0.5) ? "rect" : "circ";
+      var type = (Math.random() > 0.5) ? "rect" : "circ",
+          o;
       do
       {
-         var o = new Obstacle(type);
-      } while (this.collideWithThisObs(o))
+         o = new Obstacle(type);
+      } while (this.collideWithThisObs(o));
       this.list.push(o);
    },
 
@@ -72,7 +73,7 @@ var obs =
 
       return false;
    }
-}
+};
 
 // generic way to set animation up
 window.requestAnimFrame = (function (callback)
@@ -95,13 +96,14 @@ window.onload = function ()
        lvl = 0,
        target,
        player = new Player(),
+       nbLoop = 0,
        time =
        {
           start : 0,
 
           get : function ()
           {
-             return (this.now() - this.start) / 1000;
+             return Math.round((this.now() - this.start) / 1000);
           },
 
           setStart : function ()
@@ -124,7 +126,7 @@ window.onload = function ()
           audioPlayer : document.getElementById('audioPlayer'),
           play : function ()
           {
-             audioPlayer.play();
+             this.audioPlayer.play();
           }
        };
 
@@ -174,10 +176,17 @@ window.onload = function ()
 
    function mainLoop ()
    {
+      nbLoop++;
+      if (nbLoop >= 60)
+      {
+         nbLoop = 0;
+         player.score += 1;
+      }
       // Effacement, dessin, collisions, etc.
       clearCanvas(canvas, context);
       writeTime(context, time);
       writeLvl(context, lvl);
+      writeScore(context, player);
       obs.move(player, target);
       obs.paint(context);
 
@@ -190,6 +199,10 @@ window.onload = function ()
       {
          context.fillStyle = 'red';
          player.dead = true;
+         player.score -= 10;
+         player.paint(context);
+         setTimeout(rebootLvl, 1000);
+         return;
       }
       else
       {
@@ -197,10 +210,11 @@ window.onload = function ()
       }
 
       // Test pour voir si on a atteint la cible
-      target.move();
+      target.move(obs);
       if (target.collideWithPlayer(player))
       {
          target.paint(context, 'yellow');
+         player.score += 50;
          setTimeout(init, 1000, 3);
          return;
       } else
@@ -221,32 +235,60 @@ window.onload = function ()
 
    function init (timeBeforeStart)
    {
-      if (timeBeforeStart == 3)
+      if (timeBeforeStart === 3)
       {
          lvl++;
          obs.add();
          player.init(obs);
+         var speed = 0;
+         if (lvl > 21)
+            speed = 6;
+         else if (lvl > 14)
+            speed = 4;
+         else if (lvl > 7)
+            speed = 2;
          do
          {
-            target = new Target(0);
-         } while (obs.collideWithTarget(target));
+            var size =  (lvl < 21) ? (21 - lvl) * 3: 0;
+            target = new Target(speed, size);
+         } while (obs.collideWithTarget(target) || player.nearTarget(target));
       }
       if (timeBeforeStart >= 0)
       {
          setTimeout(init, 1000, timeBeforeStart - 1);
          clearCanvas(canvas, context);
          var msg = timeBeforeStart;
-         if (timeBeforeStart == 0)
-            msg = 'Partez...';
+         if (timeBeforeStart === 0)
+            msg = 'Go...';
          writeMessage(context, msg);
          obs.paint(context);
          player.paint(context);
       }
       else
       {
-         setTimeout(mainLoop, 1000, true);
+         setTimeout(mainLoop, 1000);
          time.setStart();
       }
    }
+
+   function rebootLvl ()
+   {
+      player.init(obs);
+      var speed = 0;
+      if (lvl > 21)
+         speed = 6;
+      else if (lvl > 14)
+         speed = 4;
+      else if (lvl > 7)
+         speed = 2;
+      do
+      {
+         var size =  (lvl < 21) ? (21 - lvl) * 3: 0;
+         target = new Target(speed, size);
+      } while (obs.collideWithTarget(target) || player.nearTarget(target));
+      setTimeout(init, 1000, 2);
+      writeMessage(context, "------------       Try again :/");
+   }
+
    init(3);
 };

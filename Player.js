@@ -71,12 +71,19 @@ function Player ()
       return obs.collideWithPlayer(this);
    };
 
+   this.nearTarget = function (target)
+   {
+      return circsOverlap(this, {x: target.x, y: target.y, radius: 250});
+
+   };
+
    this.setSpeedX = function (speed)
    {
       this.speedX = speed;
-   }
+   };
+
    this.setSpeedY = function (speed)
    {
       this.speedY = speed;
-   }
+   };
 }

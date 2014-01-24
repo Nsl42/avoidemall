@@ -95,10 +95,8 @@ function Obstacle (type)
       {
          case 'rect' :
             return circRectOverlap(circ, this);
-            break;
          case 'circ' :
             return circsOverlap(this, circ);
-            break;
       }
    };
 
@@ -108,10 +106,8 @@ function Obstacle (type)
       {
          case 'rect' :
             return rectsOverlap(this, rect);
-            break;
          case 'circ' :
             return circRectOverlap(this, rect);
-            break;
       }
    };
 }
