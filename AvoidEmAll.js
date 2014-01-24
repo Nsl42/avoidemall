@@ -177,10 +177,11 @@ window.onload = function ()
    function mainLoop ()
    {
       nbLoop++;
-      if (nbLoop >= 60)
+      if (nbLoop >= 60) // executed every second more or less
       {
          nbLoop = 0;
          player.score += 1;
+         player.decreaseShield(); // invincibility
       }
       // Effacement, dessin, collisions, etc.
       clearCanvas(canvas, context);
@@ -195,7 +196,7 @@ window.onload = function ()
       player.paint(context);
 
       // Collision test avec l'obstacle rectangulaire
-      if (obs.collideWithPlayer(player))
+      if (obs.collideWithPlayer(player) && player.shield <= 0)
       {
          context.fillStyle = 'red';
          player.dead = true;

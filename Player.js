@@ -8,17 +8,19 @@ function Player ()
    this.speedY = 0;
 
    this.score = 0;
+   this.shield = 0;
    this.dead = false;
 
    this.init = function (obs)
    {
+      this.speedX = 0;
+      this.speedY = 0;
+      this.shield = 2;
+      this.dead = false;
       do
       {
          this.x = Math.random() * (CAN_WIDTH - 200) + 100;
          this.y = Math.random() * (CAN_HEIGHT - 200) + 100;
-         this.speedX = 0;
-         this.speedY = 0;
-         this.dead = false;
       } while (obs.collideWithPlayer(this));
    };
 
@@ -86,4 +88,10 @@ function Player ()
    {
       this.speedY = speed;
    };
+
+   this.decreaseShield = function ()
+   {
+      if (this.shield > 0) // invincibility
+         this.shield--;
+   }
 }
