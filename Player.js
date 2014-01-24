@@ -9,6 +9,7 @@ function Player ()
 
    this.score = 0;
    this.shield = 0;
+   this.nb_death = 0;
    this.dead = false;
 
    this.init = function (obs)
@@ -93,5 +94,12 @@ function Player ()
    {
       if (this.shield > 0) // invincibility
          this.shield--;
+   };
+
+   this.kill = function ()
+   {
+      this.dead = true;
+      this.score -= 10;
+      this.nb_death++;
    }
 }

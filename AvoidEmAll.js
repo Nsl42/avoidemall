@@ -101,7 +101,7 @@ window.onload = function ()
        {
           start : 0,
 
-          get : function ()
+          toString : function ()
           {
              return Math.round((this.now() - this.start) / 1000);
           },
@@ -115,11 +115,6 @@ window.onload = function ()
           {
              return (new Date().getTime());
           },
-
-          toString : function ()
-          {
-             return 'Time : ' + this.get();
-          }
        },
        music =
        {
@@ -185,9 +180,7 @@ window.onload = function ()
       }
       // Effacement, dessin, collisions, etc.
       clearCanvas(canvas, context);
-      writeTime(context, time);
-      writeLvl(context, lvl);
-      writeScore(context, player);
+      show_hud(context, time, lvl, player);
       obs.move(player, target);
       obs.paint(context);
 
@@ -199,8 +192,7 @@ window.onload = function ()
       if (obs.collideWithPlayer(player) && player.shield <= 0)
       {
          context.fillStyle = 'red';
-         player.dead = true;
-         player.score -= 10;
+         player.kill();
          player.paint(context);
          setTimeout(rebootLvl, 1000);
          return;
