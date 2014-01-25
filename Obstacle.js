@@ -71,6 +71,7 @@ function Obstacle (type)
       switch (this.type)
       {
          case 'rect' :
+            context.fillStyle = COL_OBS_RECT;
             context.fillRect(this.x, this.y, this.width, this.height);
             break;
          case 'circ' :
@@ -79,10 +80,10 @@ function Obstacle (type)
             context.closePath();
             // sauver contexte courant
             context.save();
-            context.fillStyle = 'red';
+            context.fillStyle = COL_OBS_CIRC;
             context.fill();
             context.lineWidth = 10;
-            context.strokeStyle = 'blue';
+            context.strokeStyle = COL_OBS_CIRC_ST;
             context.stroke();
             context.restore();
             break;

@@ -8,26 +8,29 @@ function Player ()
    this.speedY = 0;
 
    this.score = 0;
+   this.shield = 0;
+   this.nb_death = 0;
    this.dead = false;
 
    this.init = function (obs)
    {
+      this.speedX = 0;
+      this.speedY = 0;
+      this.shield = 2;
+      this.dead = false;
       do
       {
          this.x = Math.random() * (CAN_WIDTH - 200) + 100;
          this.y = Math.random() * (CAN_HEIGHT - 200) + 100;
-         this.speedX = 0;
-         this.speedY = 0;
-         this.dead = false;
       } while (obs.collideWithPlayer(this));
    };
 
    this.paint = function (context)
    {
       if (this.dead)
-         context.fillStyle = 'red';
+         context.fillStyle = COL_PLAYER_DEAD;
       else
-         context.fillStyle = 'black';
+         context.fillStyle = COL_PLAYER;
       context.fillRect(this.x, this.y, this.width, this.height);
    };
 
@@ -86,4 +89,17 @@ function Player ()
    {
       this.speedY = speed;
    };
+
+   this.decreaseShield = function ()
+   {
+      if (this.shield > 0) // invincibility
+         this.shield--;
+   };
+
+   this.kill = function ()
+   {
+      this.dead = true;
+      this.score -= 10;
+      this.nb_death++;
+   }
 }

@@ -1,26 +1,35 @@
 function writeMessage (context,  message)
 {
    context.font = '18pt Calibri';
-   context.fillStyle = 'black';
+   context.fillStyle = COL_HUD;
    context.fillText(message, 10, 25);
+}
+
+function show_hud (context, time, lvl, player)
+{
+   context.font = '18pt Calibri';
+   context.fillStyle = COL_HUD;
+   writeTime(context, time);
+   writeLvl(context, lvl);
+   writeScore(context, player);
+   writeNbDeath(context, player);
 }
 function writeTime (context, time)
 {
-   context.font = '18pt Calibri';
-   context.fillStyle = 'black';
-   context.fillText(time.toString(), 10, 25);
+   context.fillText('  Time : ' + time.toString(), 50, 50);
 }
 function writeLvl (context, lvl)
 {
-   context.font = '18pt Calibri';
-   context.fillStyle = 'black';
-   context.fillText('lvl : ' + lvl, CAN_WIDTH - 100, 25);
+   context.fillText(' Level : ' + lvl, CAN_WIDTH - 150, 50);
 }
 function writeScore (context, player)
 {
-   context.font = '18pt Calibri';
-   context.fillStyle = 'black';
-   context.fillText('Score : ' + player.score, 10, CAN_HEIGHT - 25);
+   context.fillText(' Score : ' + player.score, 50, CAN_HEIGHT - 50);
+}
+
+function writeNbDeath (context, player)
+{
+   context.fillText('Deaths : ' + player.nb_death, CAN_WIDTH - 150, CAN_HEIGHT - 50);
 }
 
 function getMousePos (canvas, evt)
