@@ -1,0 +1,54 @@
+html
+{
+
+   background:url(../images/back.jpg) top left repeat;
+}
+@font-face {
+    font-family: 'sf_cartoonist_handregular';
+    src: url('fonts/SF_Cartoonist_Hand-webfont.eot');
+    src: url('fonts/SF_Cartoonist_Hand-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/SF_Cartoonist_Hand-webfont.woff') format('woff'),
+         url('fonts/SF_Cartoonist_Hand-webfont.ttf') format('truetype'),
+         url('fonts/SF_Cartoonist_Hand-webfont.svg#sf_cartoonist_handregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body
+{
+   margin: 0px;
+   padding: 0px;
+   text-align:center;
+
+}
+
+
+
+
+#myCanvas
+{
+   background:url(../images/canvas-back.png) right bottom;
+   border-radius:20px;
+   border: 3px double #9C9898;
+   box-shadow:10px 10px 25px #b5af84;
+}
+#board
+{
+	float:left;
+	width: 500px;
+	height:550px;
+	border:4px #9C9898 double;
+	margin-left:30px;
+	padding-top: 5px;
+	
+	background-color:#fffFF2;
+	border-radius:20px;
+	box-shadow: 10px 10px 25px #b5af84;
+}
+	#board h1
+	{
+		
+   font-family:'sf_cartoonist_handregular', Arial, serif;
+   font-size : 3em;
+   }
