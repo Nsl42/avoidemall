@@ -28,9 +28,9 @@ function Player ()
    this.paint = function (context)
    {
       if (this.dead)
-         context.fillStyle = 'red';
+         context.fillStyle = COL_PLAYER_DEAD;
       else
-         context.fillStyle = 'black';
+         context.fillStyle = COL_PLAYER;
       context.fillRect(this.x, this.y, this.width, this.height);
    };
 

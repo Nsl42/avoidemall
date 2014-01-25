@@ -14,7 +14,7 @@ function Target (speed, size)
       context.fillStyle = fillColor;
       context.fill();
       context.lineWidth = 5;
-      context.strokeStyle = 'black';
+      context.strokeStyle = COL_TARGET_ST;
       context.stroke();
       context.restore();
    };

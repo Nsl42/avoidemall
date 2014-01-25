@@ -1,14 +1,14 @@
 function writeMessage (context,  message)
 {
    context.font = '18pt Calibri';
-   context.fillStyle = 'black';
+   context.fillStyle = COL_HUD;
    context.fillText(message, 10, 25);
 }
 
 function show_hud (context, time, lvl, player)
 {
    context.font = '18pt Calibri';
-   context.fillStyle = 'black';
+   context.fillStyle = COL_HUD;
    writeTime(context, time);
    writeLvl(context, lvl);
    writeScore(context, player);

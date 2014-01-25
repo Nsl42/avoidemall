@@ -1,5 +1,15 @@
-var CAN_WIDTH = 800,
-    CAN_HEIGHT = 600;
+/****** Constantes *****/
+var CAN_WIDTH           = 800,
+    CAN_HEIGHT          = 600,
+    COL_HUD             = 'black',
+    COL_OBS_RECT        = 'black',
+    COL_OBS_CIRC        = 'red',
+    COL_OBS_CIRC_ST     = 'blue',
+    COL_PLAYER          = 'green',
+    COL_PLAYER_DEAD     = 'red',
+    COL_TARGET          = '#8ED6FF',
+    COL_TARGET_ST       = 'black',
+    COL_TARGET_REACHED  = 'yellow';
 
 var obs =
 {
@@ -202,63 +212,70 @@ window.onload = function ()
    document.onkeydown = checkArrowKeysDown;
    document.onkeyup = checkArrowKeysUp;
 
+   /**
+    * mainLoop move and draws all the objects in the canvas.
+    * And check if they collide.
+    */
    function mainLoop ()
    {
+      // Do nothing if the game is paused.
       if (pause)
       {
          requestAnimFrame(function () { mainLoop(); });
          writeMessage(context, 'Pause ...');
          return;
       }
+
       nbLoop++;
-      if (nbLoop >= 60) // executed every second more or less
+      if (nbLoop >= 60) // executed every second (more or less)
       {
          nbLoop = 0;
          player.score += 1;
          player.decreaseShield(); // invincibility
       }
-      // Effacement, dessin, collisions, etc.
+
+      // Clear Canvas and display HUD (with time, lvl, score and number of deaths)
       clearCanvas(canvas, context);
       show_hud(context, time, lvl, player);
+
+      // Move and Display obstacles.
       obs.move(player, target);
       obs.paint(context);
 
-      // Collision test avec l'obstacle rectangulaire
+      // Move and Display player.
       player.move(obs);
       player.paint(context);
 
-      // Collision test avec l'obstacle rectangulaire
+      // Check if any player has been killed by an obstacle.
+      // If so and all the players are dead then restart the level.
       if (obs.collideWithPlayer(player) && player.shield <= 0)
       {
-         context.fillStyle = 'red';
          player.kill();
          player.paint(context);
          setTimeout(rebootLvl, 1000);
          return;
       }
-      else
-      {
-         context.fillStyle = 'black';
-      }
 
-      // Test pour voir si on a atteint la cible
+      // Move the target and Check if any player has reached it.
+      // Display the target with a different color if it has been reached.
       target.move(obs);
       if (target.collideWithPlayer(player))
       {
-         target.paint(context, 'yellow');
+         target.paint(context, COL_TARGET_REACHED);
          player.score += 50;
          setTimeout(init, 1000, 3);
          return;
       } else
       {
-         target.paint(context, '#8ED6FF');
+         target.paint(context, COL_TARGET);
       }
 
-      // On reexecute la fonction mainloop après 60ms
+      // Execute the mainLoop every 60ms
       requestAnimFrame(function () { mainLoop(); });
    }
 
 
+   // Listen mouse. Not used.
    canvas.addEventListener('mousemove', function (evt)
    {
          var mousePos = getMousePos(canvas, evt);
@@ -319,7 +336,7 @@ window.onload = function ()
          target = new Target(speed, size);
       } while (obs.collideWithTarget(target) || player.nearTarget(target));
       setTimeout(init, 1000, 2);
-      writeMessage(context, "------------       Try again :/");
+      writeMessage(context, " Try again :/");
    }
 
    init(3);
