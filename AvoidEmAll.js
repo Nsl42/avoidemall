@@ -123,7 +123,23 @@ window.onload = function ()
           play : function ()
           {
              this.audioPlayer.play();
-          }
+             this.audioPlayer.loop = true;
+          },
+          pause : function ()
+          {
+             this.audioPlayer.pause();
+          },
+          getStatus : function ()
+          {
+             return this.audioPlayer.paused;
+          },
+          toggle : function ()
+          {
+             if (this.getStatus())
+                this.play();
+             else
+                this.pause();
+          },
        };
 
    // Play music
@@ -179,6 +195,8 @@ window.onload = function ()
          player.setSpeedY(4);
       else if (arrs[key] == 'p')
          pause = (pause) ? false : true;
+      else if (arrs[key] == 'm')
+         music.toggle();
    }
 
    document.onkeydown = checkArrowKeysDown;
