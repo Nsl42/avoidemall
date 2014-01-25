@@ -97,6 +97,7 @@ window.onload = function ()
        target,
        player = new Player(),
        nbLoop = 0,
+       pause = false,
        time =
        {
           start : 0,
@@ -130,40 +131,54 @@ window.onload = function ()
 
    function checkArrowKeysUp (e)
    {
-      var arrs = [], key = window.event ? event.keyCode : e.keyCode;
+      var arrs = [],
+          key = window.event ? event.keyCode : e.keyCode;
       arrs[37] = 'left';
       arrs[38] = 'up';
       arrs[39] = 'right';
       arrs[40] = 'down';
+      arrs[90] = 'z';
+      arrs[81] = 'q';
+      arrs[83] = 's';
+      arrs[68] = 'd';
       //if(arrs[key]) console.log(arrs[key]);
 
-      if(arrs[key] == 'left')
+      if ((arrs[key] == 'left') || (arrs[key] == 'q'))
          player.setSpeedX(0);
-      if(arrs[key] == 'right')
+      else if ((arrs[key] == 'right') || (arrs[key] == 'd'))
          player.setSpeedX(0);
-      if(arrs[key] == 'up')
+      else if ((arrs[key] == 'up') || (arrs[key] == 'z'))
          player.setSpeedY(0);
-      if(arrs[key] == 'down')
+      else if ((arrs[key] == 'down') || (arrs[key] == 's'))
          player.setSpeedY(0);
    }
 
    function checkArrowKeysDown (e)
    {
-      var arrs = [], key = window.event ? event.keyCode : e.keyCode;
+      var arrs = [],
+          key = window.event ? event.keyCode : e.keyCode;
       arrs[37] = 'left';
       arrs[38] = 'up';
       arrs[39] = 'right';
       arrs[40] = 'down';
+      arrs[90] = 'z';
+      arrs[81] = 'q';
+      arrs[83] = 's';
+      arrs[68] = 'd';
+      arrs[80] = 'p';
+      arrs[77] = 'm';
       //if(arrs[key]) console.log(arrs[key]);
 
-      if(arrs[key] == 'left')
+      if((arrs[key] == 'left') || (arrs[key] == 'q'))
          player.setSpeedX(-4);
-      if(arrs[key] == 'right')
+      else if((arrs[key] == 'right') || (arrs[key] == 'd'))
          player.setSpeedX(4);
-      if(arrs[key] == 'up')
+      else if((arrs[key] == 'up') || (arrs[key] == 'z'))
          player.setSpeedY(-4);
-      if(arrs[key] == 'down')
+      else if((arrs[key] == 'down') || (arrs[key] == 's'))
          player.setSpeedY(4);
+      else if (arrs[key] == 'p')
+         pause = (pause) ? false : true;
    }
 
    document.onkeydown = checkArrowKeysDown;
@@ -171,6 +186,12 @@ window.onload = function ()
 
    function mainLoop ()
    {
+      if (pause)
+      {
+         requestAnimFrame(function () { mainLoop(); });
+         writeMessage(context, 'Pause ...');
+         return;
+      }
       nbLoop++;
       if (nbLoop >= 60) // executed every second more or less
       {
