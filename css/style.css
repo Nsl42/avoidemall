@@ -22,12 +22,16 @@ body
    text-align:center;
 
 }
+content
+{
+padding-top:10px;}	
 
 
 
 
 #myCanvas
 {
+
    background:url(../images/canvas-back.png) right bottom;
    border-radius:20px;
    border: 3px double #9C9898;
@@ -35,6 +39,7 @@ body
 }
 #board
 {
+	margin-top:25px;
 	float:left;
 	width: 500px;
 	height:550px;
@@ -52,3 +57,22 @@ body
    font-family:'sf_cartoonist_handregular', Arial, serif;
    font-size : 3em;
    }
+   
+  #copyright
+  {
+  margin-top: 20px;
+  
+	border:4px #9C9898 double;
+  background-color:#fffFF2;
+	border-radius:20px;
+	box-shadow: 10px 10px 25px #b5af84;
+	font-family: Tahoma, Arial, serif;
+	font-weight: bold;
+	width: 95%;
+	margin-left:2.5%;
+	background-color
+	}
+	#copyright td
+	{
+	width:33%;
+	}
