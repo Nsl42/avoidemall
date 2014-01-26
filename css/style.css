@@ -1,7 +1,7 @@
 html
 {
 
-   background:url(../images/back.jpg) top left repeat;
+   background:url(../images/back.png) top left repeat;
 }
 @font-face {
     font-family: 'sf_cartoonist_handregular';
@@ -10,6 +10,17 @@ html
          url('fonts/SF_Cartoonist_Hand-webfont.woff') format('woff'),
          url('fonts/SF_Cartoonist_Hand-webfont.ttf') format('truetype'),
          url('fonts/SF_Cartoonist_Hand-webfont.svg#sf_cartoonist_handregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'urbanslickregular';
+    src: url('fonts/urban_slick-webfont.eot');
+    src: url('fonts/urban_slick-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/urban_slick-webfont.woff') format('woff'),
+         url('fonts/urban_slick-webfont.ttf') format('truetype'),
+         url('fonts/urban_slick-webfont.svg#urbanslickregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -25,7 +36,14 @@ body
 content
 {
 padding-top:10px;}	
-
+header h1
+{
+color: #4e3003;
+text-shadow: 10px 10px 25px #b5af84;
+font-family:'urbanslickregular', Arial, serif;
+font-size: 3.6em;
+font-style:italic;}
+	
 
 
 
