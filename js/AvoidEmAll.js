@@ -152,9 +152,6 @@ window.onload = function ()
           },
        };
 
-   // Play music
-   music.play();
-
    function checkArrowKeysUp (e)
    {
       var arrs = [],
