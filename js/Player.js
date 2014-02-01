@@ -51,8 +51,6 @@ function Player ()
          this.y -= this.speedY;
       else if (obs.collideWithPlayer(this))
          this.y -= this.speedY;
-
-      return obs.collideWithPlayer(this);
    };
 
    this.moveTo = function (x, y, obs)
@@ -70,14 +68,11 @@ function Player ()
          this.speedY = -this.speedY;
       else if ((this.y + this.height) > CAN_HEIGHT)
          this.speedY = -this.speedY;
-
-      return obs.collideWithPlayer(this);
    };
 
    this.nearTarget = function (target)
    {
       return circsOverlap(this, {x: target.x, y: target.y, radius: 250});
-
    };
 
    this.setSpeedX = function (speed)
@@ -101,5 +96,5 @@ function Player ()
       this.dead = true;
       this.score -= 10;
       this.nb_death++;
-   }
+   };
 }
