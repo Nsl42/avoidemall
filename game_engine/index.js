@@ -1,7 +1,8 @@
 global.game = {};
 
 // Import other js files needed for the game.
-require('./CST');
+require('../public/js/CST');
+require('../public/js/time');
 require('./collision');
 require('./Target');
 require('./Obstacle');
@@ -16,33 +17,6 @@ global.game.nbLoop = 0;
 // Pause is off.
 // global.game.pause = false;
 global.game.mgs = '';
-global.game.time =
-{
-   start : 0,
-
-   toString : function ()
-   {
-      if (this.start == 0)
-         return "N/A";
-      else
-         return Math.round((this.now() - this.start) / 1000);
-   },
-
-   setStart : function ()
-   {
-      this.start = this.now();
-   },
-
-   setStartTo : function (t)
-   {
-      this.start = t;
-   },
-
-   now : function ()
-   {
-      return (new Date().getTime());
-   },
-};
 
 /**
  * mainLoop move all the objects in the canvas.
