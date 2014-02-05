@@ -1,0 +1,24 @@
+{
+  "author": "Anas Alaoui M'Darhri & Romain Bressan",
+  "name": "Avoid'em All!",
+  "description": "Multiplayer Game",
+  "main": "server.js",
+  "version": "0.8",
+
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Nsl42/avoidemall.git"
+  },
+
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+
+  "dependencies": {
+    "express": ">= 3.0.0",
+    "socket.io": ">= 0.9.0"
+  },
+
+  "readmeFilename": "README.md",
+  "devDependencies": {}
+}
