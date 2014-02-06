@@ -1,6 +1,7 @@
 /************************
  * To set animation up. *
  ************************/
+
 window.requestAnimFrame = (function (callback)
 {
    return window.requestAnimationFrame ||
@@ -15,11 +16,13 @@ window.requestAnimFrame = (function (callback)
 }
 )();
 
+
+/**********
+ * onLoad *
+ **********/
 window.onload = function ()
 {
-   /**
-    * Manages the music played during the game via the audio tag 'audioPlayer'.
-    */
+   // Manages the music played during the game via the audio tag 'audioPlayer'.
    var music =
    {
       audioPlayer : document.getElementById('audioPlayer'),
@@ -86,21 +89,19 @@ window.onload = function ()
 
       // Move player to the up.
       if((arrs[key] == 'up') || (arrs[key] == 'z'))
-         socket.emit('move_player_y', {name: name, speed: -4});
+         socket.emit('move_player_y', { y: -4 });
       // Move player to the left.
       else if((arrs[key] == 'left') || (arrs[key] == 'q'))
-         socket.emit('move_player_x', {name: name, speed: -4});
+         socket.emit('move_player_x', { x: -4 });
       // Move player to the down.
       else if((arrs[key] == 'down') || (arrs[key] == 's'))
-         socket.emit('move_player_y', {name: name, speed: 4});
+         socket.emit('move_player_y', { y: 4 });
       // Move player to the right.
       else if((arrs[key] == 'right') || (arrs[key] == 'd'))
-         socket.emit('move_player_x', {name: name, speed: 4});
+         socket.emit('move_player_x', { x: 4 });
    };
 
-   /**
-    * Stop moving the player when the user stop pressing the arrow key.
-    */
+   // Stop moving the player when the user stop pressing the arrow key.
    document.onkeyup = function (e)
    {
       var arrs = [],
@@ -115,18 +116,20 @@ window.onload = function ()
       arrs[68] = 'd';
 
       if ((arrs[key] == 'up') || (arrs[key] == 'z'))
-         socket.emit('move_player_y', {name: name, speed: 0});
+         socket.emit('move_player_y', { y: 0 });
       else if ((arrs[key] == 'left') || (arrs[key] == 'q'))
-         socket.emit('move_player_x', {name: name, speed: 0});
+         socket.emit('move_player_x', { x: 0 });
       else if ((arrs[key] == 'down') || (arrs[key] == 's'))
-         socket.emit('move_player_y', {name: name, speed: 0});
+         socket.emit('move_player_y', { y: 0 });
       else if ((arrs[key] == 'right') || (arrs[key] == 'd'))
-         socket.emit('move_player_x', {name: name, speed: 0});
+         socket.emit('move_player_x', { x: 0 });
    };
 
-   /**
-    * Draws all the objects in the canvas.
-    */
+
+   /************
+    * mainLoop *
+    ************/
+   // Draws all the objects in the canvas.
    function mainLoop ()
    {
       var canvas = document.getElementById('myCanvas'),
@@ -152,6 +155,7 @@ window.onload = function ()
       requestAnimFrame(function () { mainLoop(); });
    }
 
+
    /*************
     * Socket.io *
     *************/
@@ -159,8 +163,7 @@ window.onload = function ()
    // Connect to the server.
    var socket = io.connect('http://localhost');
 
-   // Ask user its name and send it to the server when the connection
-   // is established.
+   // Ask user its name and send it to the server when the connection is established.
    socket.on('connect', function ()
          {
             name = prompt('What\'s your name?', '');
@@ -170,8 +173,9 @@ window.onload = function ()
 
    // Start the mainLoop that will draw all objects on the canvas.
    // Set up Canvas. Call when the server has accepted the player's name.
-   socket.on('start_mainLoop', function ()
+   socket.on('start_mainLoop', function (player_names)
          {
+            name = player_names;
             canvas = document.getElementById('myCanvas');
             canvas.width = CST.CAN_WIDTH;
             canvas.height = CST.CAN_HEIGHT;
@@ -186,5 +190,21 @@ window.onload = function ()
             update_objects(game_data);
          }
    );
-
 };
+
+/*****************
+ * update_object *
+ *****************/
+
+// Update objects of the client with game_data send by the server.
+function update_objects (game_data)
+{
+   CST = game_data.CST;
+   obs.createObstacles(game_data.obs);
+   players.createPlayers(game_data.players);
+   target = target.createTarget(game_data.target);
+   time.setStartTo(game_data.time.start);
+   lvl = game_data.lvl;
+   pause = game_data.pause;
+   msg = game_data.msg;
+}

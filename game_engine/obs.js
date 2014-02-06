@@ -1,25 +1,30 @@
-// List of obstacles
+/*********************
+ * List of obstacles *
+ *********************/
 global.game.obs =
 {
    list : [],
 
+   // Add a new Obstacle (either rect or circ) to this list.
    add : function ()
    {
       var type = (Math.random() > 0.5) ? "rect" : "circ",
       o;
-      do
-      {
+      do { // While the new obstacle collide with another one.
          o = new global.game.Obstacle(type);
       } while (this.collideWithThisObs(o));
       this.list.push(o);
    },
 
+   // Move every obstacles in this list depending on their speed
+   // and if they collide with players or target.
    move : function (players, target)
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
          this.list[i].move(players, this, target);
    },
 
+   // return true if an Obstacle in this list overlaps player.
    collideWithThisPlayer : function (player)
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
@@ -28,6 +33,7 @@ global.game.obs =
       return false;
    },
 
+   // return true if another Obstacle in this list overlaps obstacle.
    collideWithThisObs : function (obstacle)
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
@@ -43,6 +49,7 @@ global.game.obs =
       return false;
    },
 
+   // return true if target overlaps an Obstacle in this list.
    collideWithTarget : function (target)
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
@@ -52,6 +59,8 @@ global.game.obs =
       return false;
    },
 
+   // return true if an Obstacle in this list overlaps with another one.
+   // USED ????
    collideWithObs : function ()
    {
       for (var i = 0, c = this.list.length; i < c; ++i)

@@ -45,16 +45,16 @@ io.sockets.on('connection', function (socket)
          );
 
          // Called when the client want to move his player left or right.
-         socket.on('move_player_x', function (d)
+         socket.on('move_player_x', function (speed)
                {
-                  global.game.players.setSpeedX(d.name, d.speed);
+                  global.game.players.setSpeedX(socket.name, speed.x);
                }
          );
 
          // Called when the client want to move his player up or down.
-         socket.on('move_player_y', function (d)
+         socket.on('move_player_y', function (speed)
                {
-                  global.game.players.setSpeedY(d.name, d.speed);
+                  global.game.players.setSpeedY(socket.name, speed.y);
                }
          );
 

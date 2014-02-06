@@ -1,4 +1,8 @@
-/*** Collision functions ***/
+/***********************
+ * Collision functions *
+ ***********************/
+
+// Checks if rectA overlaps rectB.
 global.game.rectsOverlap = function (rectA, rectB)
 {
    if ((rectA.x > (rectB.x + rectB.width)) ||
@@ -11,6 +15,7 @@ global.game.rectsOverlap = function (rectA, rectB)
    return true;
 };
 
+// Checks if circA overlaps circB.
 global.game.circsOverlap = function (circA, circB)
 {
    // If the distance between the centers is less than the sum of their radius
@@ -22,6 +27,7 @@ global.game.circsOverlap = function (circA, circB)
    return dist <= (4 * circA.radius * circB.radius);
 };
 
+// Checks if circ overlaps rect.
 global.game.circRectOverlap = function (circ, rect)
 {
    // https://gist.github.com/vonWolfehaus/5023015
