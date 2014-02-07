@@ -101,6 +101,8 @@ global.game.players =
             // Victory
             global.game.players.list[i].score += 50;
             target.reached = true;
+            global.game.displayMsg(global.game.players.list[i].name + " has reached"
+                  + " the target.", false);
             return true;
          }
 

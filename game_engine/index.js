@@ -92,9 +92,9 @@ global.game.init = function (timeBeforeStart, io)
    if (timeBeforeStart >= 0)
    {
       setTimeout(global.game.init, 1000, timeBeforeStart - 1, io);
-      global.game.msg = timeBeforeStart;
+      global.game.displayMsg(timeBeforeStart, false);
       if (timeBeforeStart === 0)
-         global.game.msg = 'Go...';
+         global.game.displayMsg( 'Go...', false);
    }
    else // End of init
    {
@@ -112,9 +112,9 @@ global.game.init = function (timeBeforeStart, io)
          global.game.target = new global.game.Target(speed, size);
       } while (global.game.obs.collideWithTarget(global.game.target)
             || global.game.players.near_target(global.game.target));
-      setTimeout(function ()
+      setTimeout(function (io)
             {
-               global.game.msg = "";
+               global.game.displayMsg("", false);
                global.game.time.setStart();
                global.game.mainLoop(io);
             }, 100, io);
@@ -130,10 +130,22 @@ global.game.init = function (timeBeforeStart, io)
 // io is sockect.io and is used to send the updated object to all clients.
 global.game.rebootLvl = function (io)
 {
-   global.game.msg = " Try again :/";
+   global.game.displayMsg(" Try again :/", false);
    global.game.players.init(global.game.obs);
    // Update clients.
    io.sockets.emit('paint', global.game);
 
    setTimeout(global.game.init, 1000, 2, io);
+};
+
+// Display the string msg on every player's canvas.
+// If delete_after_3_sec is true, remove the message after 3 sec.
+global.game.displayMsg = function (msg, delete_after_3_sec)
+{
+   global.game.msg = msg;
+   if (delete_after_3_sec)
+      setTimeout(function ()
+            {
+               global.game.displayMsg("", false);
+            }, 3000);
 };

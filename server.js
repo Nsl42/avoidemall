@@ -30,6 +30,7 @@ io.sockets.on('connection', function (socket)
                      setTimeout(global.game.init, 1000, 3, io);
                   // Add the new player.
                   global.game.players.add(p_name);
+                  global.game.displayMsg(p_name + ' log on.', true);
                   // Update all the clients.
                   socket.broadcast.emit('paint', global.game);
                   setTimeout(function ()
@@ -69,6 +70,7 @@ io.sockets.on('connection', function (socket)
          socket.on('disconnect', function ()
                {
                   global.game.players.remove(socket.name);
+                  global.game.displayMsg(socket.name + ' log off.', true);
                   socket.broadcast.emit('paint', global.game);
                }
          );

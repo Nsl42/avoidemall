@@ -110,6 +110,7 @@ global.game.Player = function (name)
          this.dead = true;
          this.score -= 10;
          this.nb_death++;
+         global.game.displayMsg(this.name + ' has been killed.', true);
       }
    };
 };
