@@ -29,7 +29,7 @@ io.sockets.on('connection', function (socket)
                   if (global.game.players.list.length == 0)
                      setTimeout(global.game.init, 1000, 3, io);
                   // Add the new player.
-                  global.game.player = new global.game.players.add(p_name);
+                  global.game.players.add(p_name);
                   // Update all the clients.
                   socket.broadcast.emit('paint', global.game);
                   setTimeout(function ()

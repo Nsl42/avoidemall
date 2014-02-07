@@ -26,7 +26,7 @@ global.game.nbLoop = 0;
 // global.game.pause = false;
 
 // Message that the client display on their canvas.
-global.game.mgs = '';
+global.game.msg = '';
 
 
 /************

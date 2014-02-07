@@ -122,7 +122,10 @@ global.game.players =
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
          if (obstacle.collideWithRect(this.list[i]))
+         {
+            this.list[i].kill();
             return true;
+         }
       return false;
    },
 

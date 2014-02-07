@@ -29,7 +29,10 @@ global.game.obs =
    {
       for (var i = 0, c = this.list.length; i < c; ++i)
          if (this.list[i].collideWithRect(player))
+         {
+            player.kill();
             return true;
+         }
       return false;
    },
 
