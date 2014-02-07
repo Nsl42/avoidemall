@@ -1,9 +1,9 @@
 {
   "author": "Anas Alaoui M'Darhri & Romain Bressan",
-  "name": "Avoid'em All!",
+  "name": "AvoidEmAll",
+  "version": "0.9.9",
   "description": "Multiplayer Game",
   "main": "server.js",
-  "version": "0.8",
 
   "repository": {
     "type": "git",

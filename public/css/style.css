@@ -5,18 +5,6 @@ html
 
 @font-face
 {
-    font-family: 'sf_cartoonist_handregular';
-    src: url('fonts/SF_Cartoonist_Hand-webfont.eot');
-    src: url('fonts/SF_Cartoonist_Hand-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/SF_Cartoonist_Hand-webfont.woff') format('woff'),
-         url('fonts/SF_Cartoonist_Hand-webfont.ttf') format('truetype'),
-         url('fonts/SF_Cartoonist_Hand-webfont.svg#sf_cartoonist_handregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face
-{
     font-family: 'urbanslickregular';
     src: url('fonts/urban_slick-webfont.eot');
     src: url('fonts/urban_slick-webfont.eot?#iefix') format('embedded-opentype'),
