@@ -25,9 +25,9 @@ io.sockets.on('connection', function (socket)
                   while (global.game.players.isNameAlreadyUsed(p_name))
                      p_name += (Math.round(Math.random() * 10)) + '';
 
-                  // If the first player connect : start the game.
-                  if (global.game.players.list.length == 0)
-                     setTimeout(global.game.init, 1000, 3, io);
+                  // If the first player connect : start a new Game.
+                  if (global.game.players.list.length === 0)
+                     global.game.new_game(io);
                   // Add the new player.
                   global.game.players.add(p_name);
                   global.game.displayMsg(p_name + ' log on.', true);

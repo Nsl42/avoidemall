@@ -46,6 +46,9 @@ global.game.mainLoop = function (io)
    //    return;
    // }
 
+   // Stop if they are no players
+   if (global.game.players.list.length == 0)
+      return;
    global.game.nbLoop++;
    if (global.game.nbLoop >= 60) // executed every second (more or less)
    {
@@ -148,4 +151,15 @@ global.game.displayMsg = function (msg, delete_after_3_sec)
             {
                global.game.displayMsg("", false);
             }, 3000);
+};
+
+
+// Init all the object for a new game.
+global.game.new_game = function (io)
+{
+   global.game.lvl = 0;
+   global.game.obs.list = [];
+   global.game.displayMsg("     ! New Game !", false);
+   console.log('toto');
+   setTimeout(global.game.init, 1000, 3, io);
 };
