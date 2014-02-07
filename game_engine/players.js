@@ -85,7 +85,7 @@ global.game.players =
       for (var i = 0, c = global.game.players.list.length; i < c; ++i)
          if (global.game.players.list[i].name == name)
          {
-            this.list.splice(1, i);
+            global.game.players.list.splice(i, 1);
             return;
          }
    },
