@@ -29,7 +29,7 @@ function show_hud (context, time, lvl, player)
    // Write lvl preceded by 'Level :' on top right edge of the canvas.
    function writeLvl (lvl)
    {
-      context.fillText(' Level : ' + lvl, CST.CAN_WIDTH - 150, 50);
+      context.fillText(' Level : ' + lvl, CST.CAN_WIDTH - 200, 50);
    }
 
    // Write score preceded by 'Score :' on bottom left edge of the canvas.
@@ -41,7 +41,7 @@ function show_hud (context, time, lvl, player)
    // Write nb_death preceded by 'Deaths :' on bottom right edge of the canvas.
    function writeNbDeath (nb_death)
    {
-      context.fillText('Deaths : ' + nb_death, CST.CAN_WIDTH - 150, CST.CAN_HEIGHT - 50);
+      context.fillText('Deaths : ' + nb_death, CST.CAN_WIDTH - 200, CST.CAN_HEIGHT - 50);
    }
 
    // Set up context.
