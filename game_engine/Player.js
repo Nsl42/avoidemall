@@ -105,7 +105,7 @@ global.game.Player = function (name)
    // Kill this player if he's not protected by a shield.
    this.kill = function ()
    {
-      if (this.shield <= 0) // Not invulnerable
+      if (this.shield <= 0 && !this.dead) // Not invulnerable && not dead
       {
          this.dead = true;
          this.score -= 10;
