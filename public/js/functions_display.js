@@ -44,6 +44,12 @@ function show_hud (context, time, lvl, player)
       context.fillText('Deaths : ' + nb_death, CST.CAN_WIDTH - 200, CST.CAN_HEIGHT - 50);
    }
 
+   // Write the name of the player on the top of the canvas.
+   function writeName (name)
+   {
+      context.fillText(name, (CST.CAN_WIDTH / 2) - (name.length * 7), 25);
+   };
+
    // Set up context.
    context.font = '18pt Calibri';
    context.fillStyle = CST.COL_HUD;
@@ -53,4 +59,5 @@ function show_hud (context, time, lvl, player)
    writeLvl(lvl);
    writeScore(player.score);
    writeNbDeath(player.nb_death);
+   writeName(player.name);
 }
