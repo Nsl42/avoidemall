@@ -12,11 +12,11 @@ var CST =
    // Color of HUD.
    COL_HUD             : 'black',
    // Color of rectangle obstacle.
-   COL_OBS_RECT        : 'black',
+   COL_OBS_RECT        : '#5c1972',
    // Color of circle obstacle.
    COL_OBS_CIRC        : 'red',
    // Color of circle obstacle's border.
-   COL_OBS_CIRC_ST     : 'blue',
+   COL_OBS_CIRC_ST     : '663300',
    // Color of players.
    COL_PLAYER          : 'green',
    // Color of a player who has been killed.
