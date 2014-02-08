@@ -48,82 +48,65 @@ window.onload = function ()
       },
    };
 
-   /***********************
-    * Keyboard Controls   *
-    ***********************/
+   /********************
+    * Keyboard Handler *
+    ********************/
 
-   document.onkeypress = function (e)
+   document.addEventListener("keypress", function (e)
    {
-      var arrs = [],
-          key = window.event ? event.keyCode : e.keyCode;
-      arrs[80] = 'p';
-      arrs[77] = 'm';
+      var key_code = (e.which) ? e.which : e.keyCode,
+         key = String.fromCharCode(key_code);
+      if(key) console.log(key);
 
       // Mute sound.
-      if (arrs[key] == 'm')
+      if (key == 'm')
          music.toggle();
       // Pause game. Pause is off.
       // else if (arrs[key] == 'p')
       //    socket.emit('toggle_pause');
-   }
+   }, false);
 
    /**
     * Move the player in the direction requested by the player.
     * To do so send a message to the server with the name of the player,
     * the direction and the speed.
     */
-   document.onkeydown = function (e)
+   document.addEventListener("keydown", function (e)
    {
-      var arrs = [],
-          key = window.event ? event.keyCode : e.keyCode;
-      arrs[38] = 'up';
-      arrs[37] = 'left';
-      arrs[40] = 'down';
-      arrs[39] = 'right';
-      arrs[90] = 'z';
-      arrs[81] = 'q';
-      arrs[83] = 's';
-      arrs[68] = 'd';
+      var key_code = (e.which) ? e.which : e.keyCode,
+         key = String.fromCharCode(key_code);
       // debug:
-      //if(arrs[key]) console.log(arrs[key]);
+      //if(key) console.log(key);
 
       // Move player to the up.
-      if((arrs[key] == 'up') || (arrs[key] == 'z'))
+      if((key == '&') || (key == 'Z'))
          socket.emit('move_player_y', { y: -4 });
       // Move player to the left.
-      else if((arrs[key] == 'left') || (arrs[key] == 'q'))
+      else if((key == '%') || (key == 'Q'))
          socket.emit('move_player_x', { x: -4 });
       // Move player to the down.
-      else if((arrs[key] == 'down') || (arrs[key] == 's'))
+      else if((key == '(') || (key == 'S'))
          socket.emit('move_player_y', { y: 4 });
       // Move player to the right.
-      else if((arrs[key] == 'right') || (arrs[key] == 'd'))
+      else if((key == "'") || (key == 'D'))
          socket.emit('move_player_x', { x: 4 });
-   };
+   }, false);
 
    // Stop moving the player when the user stop pressing the arrow key.
-   document.onkeyup = function (e)
+   document.addEventListener("keyup", function (e)
    {
-      var arrs = [],
-          key = window.event ? event.keyCode : e.keyCode;
-      arrs[38] = 'up';
-      arrs[37] = 'left';
-      arrs[40] = 'down';
-      arrs[39] = 'right';
-      arrs[90] = 'z';
-      arrs[81] = 'q';
-      arrs[83] = 's';
-      arrs[68] = 'd';
+      var key_code = (e.which) ? e.which : e.keyCode,
+         key = String.fromCharCode(key_code);
 
-      if ((arrs[key] == 'up') || (arrs[key] == 'z'))
+      if ((key == '&') || (key == 'Z'))
          socket.emit('move_player_y', { y: 0 });
-      else if ((arrs[key] == 'left') || (arrs[key] == 'q'))
+      else if ((key == '%') || (key == 'Q'))
          socket.emit('move_player_x', { x: 0 });
-      else if ((arrs[key] == 'down') || (arrs[key] == 's'))
+      else if ((key == '(') || (key == 'S'))
          socket.emit('move_player_y', { y: 0 });
-      else if ((arrs[key] == 'right') || (arrs[key] == 'd'))
+      else if ((key == "'") || (key == 'D'))
          socket.emit('move_player_x', { x: 0 });
-   };
+   }, false);
 
 
    /************
