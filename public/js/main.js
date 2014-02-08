@@ -56,7 +56,8 @@ window.onload = function ()
    {
       var key_code = (e.which) ? e.which : e.keyCode,
          key = String.fromCharCode(key_code);
-      if(key) console.log(key);
+      //Debug :
+      //if(key) console.log(key);
 
       // Mute sound.
       if (key == 'm')

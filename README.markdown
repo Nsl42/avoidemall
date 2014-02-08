@@ -1,9 +1,9 @@
 #Avoid'em All
 2013/2014
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
-ENSIBS Info 1
-Programmation Web
-2013/2014
+ENSIBS Info 1   
+Programmation Web   
+2013/2014 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 **Authors** :Bressan Romain   
 	4bcxyz@gmail.com   
@@ -11,7 +11,7 @@ Programmation Web
 	nslmdrhr@gmail.com
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 ###Purpose of the Game
-The goal of the game is to get the character (The dark green square) to the target (the light blue circle), without touching any of the enemies (The black rectangles and the red circles).
+The goal of the game is to get the character (The dark green square) to the target (the light blue circle), without touching any of the enemies (The purple rectangles and the red circles).
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * 
 ###Install Process
 ```bash
